@@ -36,7 +36,7 @@ jobs:
 
       - name: Check formatting
         run: |
-          unformatted=$(gofmt -l .)
+          unformatted=$(gofmt -l $(find . -name "*.go" -not -path "./vendor/*"))
           if [ -n "$unformatted" ]; then
             echo "Files requiring formatting:"
             echo "$unformatted"
