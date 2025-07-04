@@ -14,10 +14,10 @@ func TestGetAPIKey(t *testing.T) {
 		wantErr       bool
 	}{
 		{
-			name:          "valid api key",
-			headers:       http.Header{"Authorization": []string{"ApiKey test-key-123"}},
-			expectedKey:   "test-key-123",
-			wantErr:       false,
+			name:        "valid api key",
+			headers:     http.Header{"Authorization": []string{"ApiKey test-key-123"}},
+			expectedKey: "test-key-123",
+			wantErr:     false,
 		},
 		{
 			name:          "missing authorization header",
@@ -55,21 +55,21 @@ func TestGetAPIKey(t *testing.T) {
 			wantErr:       true,
 		},
 		{
-			name:          "valid api key with extra spaces",
-			headers:       http.Header{"Authorization": []string{"ApiKey test-key-with-spaces"}},
-			expectedKey:   "test-key-with-spaces",
-			wantErr:       false,
+			name:        "valid api key with extra spaces",
+			headers:     http.Header{"Authorization": []string{"ApiKey test-key-with-spaces"}},
+			expectedKey: "test-key-with-spaces",
+			wantErr:     false,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			key, err := GetAPIKey(tt.headers)
-			
+
 			if key != tt.expectedKey {
 				t.Errorf("expected key %q, got %q", tt.expectedKey, key)
 			}
-			
+
 			if tt.wantErr {
 				if err == nil {
 					t.Errorf("expected error containing %q, got nil", tt.expectedError)
