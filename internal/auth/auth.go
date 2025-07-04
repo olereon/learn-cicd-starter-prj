@@ -21,8 +21,3 @@ func GetAPIKey(headers http.Header) (string, error) {
 
 	return splitAuth[1], nil
 }
-
-// unusedFunction is intentionally unused to test staticcheck
-func unusedFunction() string {
-	return "this function is not used anywhere"
-}
